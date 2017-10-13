@@ -1,19 +1,23 @@
 #include "BankSession.h"
+#include "JvmUtil.h"
 #include <cstdio>
+#include <jni.h>
+#include <string.h>
+#include <assert.h>
 
-BankSession::BankSession() {
-	printf("BankSession()\n");
+#include <iostream>
+
+using namespace std;
+
+BankSession::BankSession(JvmUtil& jvmUtil)
+	:jvmUtil_(jvmUtil)
+{
 }
 
-BankSession::~BankSession() {
-	printf("~BankSession()\n");
+void BankSession::Process(string& data) {
+	CallJava(data);
 }
 
-void BankSession::SetData(const char* data, size_t len) {
-	printf("Setdata()\n");
+void BankSession::CallJava(string& data) {
+	jvmUtil_.CallJavaMethod(data);	
 }
-
-void BankSession::Process() {
-	printf("Process()\n");
-}
-

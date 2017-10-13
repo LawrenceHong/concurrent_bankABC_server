@@ -1,14 +1,16 @@
 #ifndef BANK_SESSION_H
 #define BANK_SESSION_H
 
-#include<cstdlib>
+#include <cstdlib>
+#include <string>
+#include "JvmUtil.h"
 
 class BankSession {
 public:
-	BankSession();
-	~BankSession();
-	void SetData(const char* data, size_t len);
-	void Process();
+	BankSession(JvmUtil& jvmUtil);
+	void Process(std::string& data);
 private:
+	void CallJava(std::string& data);
+	JvmUtil& jvmUtil_;
 };
 #endif
